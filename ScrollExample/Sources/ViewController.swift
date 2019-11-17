@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.frame = view.bounds
         scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        scrollView.backgroundColor = UIColor(white: 0.16, alpha: 1.0)
         
         let img = UIImage(named: "metro_scheme")!
         let imgView = UIImageView(image: img)

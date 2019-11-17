@@ -101,7 +101,14 @@ class SimpleScrollView: UIView {
                                                       
         let destination = parameters.destination
         let intersection = getIntersection(rect: contentOffsetBounds, segment: (contentOffset, destination))
-        let duration = intersection.flatMap { parameters.duration(to: $0) } ?? parameters.duration
+        
+        let duration: TimeInterval
+        
+        if let intersection = intersection, let intersectionDuration = parameters.duration(to: intersection) {
+            duration = intersectionDuration
+        } else {
+            duration = parameters.duration
+        }
         
         contentOffsetAnimation = TimerAnimation(
             duration: duration,
@@ -118,11 +125,13 @@ class SimpleScrollView: UIView {
     private func bounce(withVelocity velocity: CGPoint) {
         let restOffset = contentOffset.clamped(to: contentOffsetBounds)
         let displacement = contentOffset - restOffset
+        let threshold = 0.5 / UIScreen.main.scale
+        let spring = Spring(mass: 1, stiffness: 100, dampingRatio: 1)
         
-        let parameters = SpringTimingParameters(spring: .default,
+        let parameters = SpringTimingParameters(spring: spring,
                                                 displacement: displacement,
                                                 initialVelocity: velocity,
-                                                threshold: 0.5)
+                                                threshold: threshold)
        
         contentOffsetAnimation = TimerAnimation(
             duration: parameters.duration,
@@ -132,7 +141,7 @@ class SimpleScrollView: UIView {
     }
 
     private func clampOffset(_ offset: CGPoint) -> CGPoint {
-        let rubberBand = RubberBand(bounds: contentOffsetBounds)
+        let rubberBand = RubberBand(dims: bounds.size, bounds: contentOffsetBounds)
         return rubberBand.clamp(offset)
     }
     
