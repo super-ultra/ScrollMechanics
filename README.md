@@ -2,7 +2,7 @@
 This is an example of a simple scroll view mechanics implementation.
 
 ### Important
-I use single animation for `contentOffset` for simplicity:
+I use single animation for `contentOffset` to simplify the example:
 ```swift
 contentOffsetAnimation = TimerAnimation(
     duration: duration,
