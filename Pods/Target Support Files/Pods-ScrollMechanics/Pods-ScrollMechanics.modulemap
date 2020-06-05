@@ -1,6 +1,0 @@
-framework module Pods_ScrollMechanics {
-  umbrella header "Pods-ScrollMechanics-umbrella.h"
-
-  export *
-  module * { export * }
-}
