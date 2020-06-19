@@ -17,6 +17,10 @@ public final class TimerAnimation {
         self.displayLink = displayLink
     }
 
+    deinit {
+        invalidate()
+    }
+    
     public func invalidate() {
         guard running else { return }
         running = false
