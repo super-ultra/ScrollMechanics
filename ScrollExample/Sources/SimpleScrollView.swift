@@ -51,6 +51,7 @@ class SimpleScrollView: UIView {
     }
     
     private let panRecognizer = UIPanGestureRecognizer()
+    private var lastPan: Date?
     
     private var state: State = .default
     
@@ -62,6 +63,7 @@ class SimpleScrollView: UIView {
     }
     
     @objc private func handlePanRecognizer(_ sender: UIPanGestureRecognizer) {
+        let newPan = Date()
         switch sender.state {
         case .began:
             stopOffsetAnimation()
@@ -75,7 +77,17 @@ class SimpleScrollView: UIView {
         
         case .ended:
             state = .default
-            let velocity = sender.velocity(in: self)
+            
+            // Pan gesture recognizers report a non-zero terminal velocity even
+            // when the user had stopped dragging:
+            // https://stackoverflow.com/questions/19092375/how-to-determine-true-end-velocity-of-pan-gesture
+            // In virtually all cases, the pan recognizer seems to call this
+            // handler at intervals of less than 100ms while the user is
+            // dragging, so if this call occurs outside that window, we can
+            // assume that the user had stopped, and finish scrolling without
+            // deceleration.
+            let userHadStoppedDragging = newPan.timeIntervalSince(lastPan ?? newPan) >= 0.1
+            let velocity: CGPoint = userHadStoppedDragging ? .zero : sender.velocity(in: self)
             completeGesture(withVelocity: -velocity)
             
         case .cancelled, .failed:
@@ -87,6 +99,7 @@ class SimpleScrollView: UIView {
         @unknown default:
             fatalError()
         }
+        lastPan = newPan
     }
     
     private func stopOffsetAnimation() {
