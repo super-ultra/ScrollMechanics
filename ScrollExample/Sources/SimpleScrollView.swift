@@ -146,6 +146,19 @@ class SimpleScrollView: UIView {
     }
     
     private func completeGesture(withVelocity velocity: CGPoint) {
+        // If the scroll view is exactly as tall as its content along one axis,
+        // then the content offset along that axis will be 0 as will the
+        // minimum and maximum edges of the bounds along that axis, and
+        // `contains` will fail, because it considers coordinates lying on
+        // the maximum edges to be outside the rect. Enlarge the bounds along
+        // the problematic axis to avoid this.
+        var contentOffsetBounds = self.contentOffsetBounds
+        if contentOffsetBounds.maxX == contentOffsetBounds.minX {
+            contentOffsetBounds.size.width += 1
+        } else if contentOffsetBounds.maxY == contentOffsetBounds.minY {
+            contentOffsetBounds.size.height += 1
+        }
+        
         if contentOffsetBounds.contains(contentOffset) {
             startDeceleration(withVelocity: velocity)
         } else {
