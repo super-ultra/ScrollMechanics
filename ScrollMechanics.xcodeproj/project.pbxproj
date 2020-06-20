@@ -34,6 +34,7 @@
 		B1B019542304C05700677ADE /* ScrollMechanics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12D64B222FE37FD00E7579D /* ScrollMechanics.framework */; };
 		B1B019552304C05700677ADE /* ScrollMechanics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B12D64B222FE37FD00E7579D /* ScrollMechanics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B1B019582304CF2B00677ADE /* RubberBand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B019572304CF2B00677ADE /* RubberBand.swift */; };
+		B1D5C9F7249E137100FA92FC /* CGRect+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D5C9F6249E137100FA92FC /* CGRect+Utils.swift */; };
 		B1FBC1962333872B00E98765 /* TimingParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FBC1952333872B00E98765 /* TimingParameters.swift */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +110,7 @@
 		B19570FC233ADACD00170834 /* CASpringAnimation+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CASpringAnimation+Utils.swift"; sourceTree = "<group>"; };
 		B19570FE233AE0C600170834 /* UISpringTimingParameters+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISpringTimingParameters+Utils.swift"; sourceTree = "<group>"; };
 		B1B019572304CF2B00677ADE /* RubberBand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubberBand.swift; sourceTree = "<group>"; };
+		B1D5C9F6249E137100FA92FC /* CGRect+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Utils.swift"; sourceTree = "<group>"; };
 		B1FBC1952333872B00E98765 /* TimingParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingParameters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -249,6 +251,7 @@
 				B12D64D222FF300900E7579D /* AppDelegate.swift */,
 				B12D64D422FF300900E7579D /* ViewController.swift */,
 				B12D64E422FF31F000E7579D /* SimpleScrollView.swift */,
+				B1D5C9F6249E137100FA92FC /* CGRect+Utils.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B12D64D522FF300900E7579D /* ViewController.swift in Sources */,
+				B1D5C9F7249E137100FA92FC /* CGRect+Utils.swift in Sources */,
 				B12D64D322FF300900E7579D /* AppDelegate.swift in Sources */,
 				B12D64E522FF31F000E7579D /* SimpleScrollView.swift in Sources */,
 			);
