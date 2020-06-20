@@ -154,7 +154,7 @@ class SimpleScrollView: UIView {
     }
     
     private func completeGesture(withVelocity velocity: CGPoint) {
-        if contentOffsetBounds.contains(contentOffset) {
+        if contentOffsetBounds.containsIncludingBorders(contentOffset) {
             startDeceleration(withVelocity: velocity)
         } else {
             bounce(withVelocity: velocity)
