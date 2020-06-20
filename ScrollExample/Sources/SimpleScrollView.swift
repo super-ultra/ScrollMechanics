@@ -89,6 +89,14 @@ class SimpleScrollView: UIView {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        // Freeze the scroll view at its current position so that the user can
+        // interact with its content or scroll it.
+        stopOffsetAnimation()
+    }
+    
     private func stopOffsetAnimation() {
         contentOffsetAnimation?.invalidate()
         contentOffsetAnimation = nil
